@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Montera – Fitness-Deals & Empfehlungen</title>
+  <meta name="description" content="Montera – minimalistische Landingpage mit handverlesenen Fitness-Produkten. Alle Links sind Affiliate-Links (Werbung)." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='80'>🏋️‍♂️</text></svg>">
+  <style>
+    :root{
+      --bg:#ffffff; --fg:#0f172a; --muted:#64748b; --card:#f8fafc; --accent:#111827; --ring:#e5e7eb;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family:Inter,Arial,sans-serif}
+    a{text-decoration:none;color:inherit}
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+    .brand{font-weight:700;font-size:1.5rem}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+    .card{border:1px solid var(--ring);border-radius:12px;overflow:hidden;background:var(--card);transition:transform .2s}
+    .card:hover{transform:translateY(-3px)}
+    .card img{width:100%;height:200px;object-fit:cover}
+    .content{padding:12px}
+    .title{font-weight:600;margin-bottom:6px}
+    .price{color:var(--muted);font-size:.9rem}
+    footer{text-align:center;margin-top:40px;font-size:.9rem;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">🏋️‍♂️ Montera</div>
+    </header>
+
+    <p>Werbung / Hinweis: Alle Produktlinks sind <strong>Affiliate-Links</strong>. Wenn du über einen Link kaufst, erhalten wir eine kleine Provision. Für dich bleibt der Preis gleich.</p>
+
+    <section class="grid">
+      <a href="https://amzn.to/3XgCq58" target="_blank" rel="nofollow sponsored" class="card">
+        <img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?q=80&w=1200&auto=format&fit=crop" alt="Kurzhanteln" />
+        <div class="content">
+          <div class="title">Verstellbare Kurzhanteln</div>
+          <div class="price">Zum Produkt →</div>
+        </div>
+      </a>
+
+      <a href="https://amzn.to/3JENS7y" target="_blank" rel="nofollow sponsored" class="card">
+        <img src="https://images.unsplash.com/photo-1599050751795-5d0fe04d3a6b?q=80&w=1200&auto=format&fit=crop" alt="Widerstandsbänder" />
+        <div class="content">
+          <div class="title">Widerstandsbänder Set</div>
+          <div class="price">Zum Produkt →</div>
+        </div>
+      </a>
+
+      <a href="https://amzn.to/4ozPdf9" target="_blank" rel="nofollow sponsored" class="card">
+        <img src="https://images.unsplash.com/photo-1597393353410-9604a564b7d2?q=80&w=1200&auto=format&fit=crop" alt="Proteinpulver" />
+        <div class="content">
+          <div class="title">Proteinpulver Whey</div>
+          <div class="price">Zum Produkt →</div>
+        </div>
+      </a>
+
+      <a href="https://amzn.to/3JTE6yr" target="_blank" rel="nofollow sponsored" class="card">
+        <img src="https://images.unsplash.com/photo-1552196563-55cd4e45efb3?q=80&w=1200&auto=format&fit=crop" alt="Yogamatte" />
+        <div class="content">
+          <div class="title">Rutschfeste Yogamatte</div>
+          <div class="price">Zum Produkt →</div>
+        </div>
+      </a>
+
+      <a href="https://amzn.to/47kOKHr" target="_blank" rel="nofollow sponsored" class="card">
+        <img src="https://images.unsplash.com/photo-1599050751865-b3e6e86de555?q=80&w=1200&auto=format&fit=crop" alt="Springseil" />
+        <div class="content">
+          <div class="title">Speed Rope Springseil</div>
+          <div class="price">Zum Produkt →</div>
+        </div>
+      </a>
+    </section>
+
+    <footer>
+      <p>© <script>document.write(new Date().getFullYear())</script> Montera. Alle Rechte vorbehalten.</p>
+      <p><a href="#">Impressum</a> · <a href="#">Datenschutz</a></p>
+    </footer>
+  </div>
+</body>
+</html>
