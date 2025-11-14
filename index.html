@@ -5,11 +5,131 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Montera – Fitness-Deals & Empfehlungen</title>
   <meta name="description" content="Montera – minimalistische Landingpage mit handverlesenen Fitness-Produkten. Alle Links sind Affiliate-Links (Werbung)." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='80'>🏋️‍♂️</text></svg>">
   <style>
-    body { background: #f9fafb; font-family: Arial; }
+    :root{
+      --bg:#f9fafb; --fg:#0f172a; --muted:#475569; --card:#ffffff; --accent:#16a34a; --ring:#e2e8f0;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    a{text-decoration:none;color:inherit}
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.4rem}
+    .badge{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;color:#065f46;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.25);padding:6px 10px;border-radius:999px}
+
+    /* HERO */
+    .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center;margin:10px 0 34px}
+    .hero h1{font-size:clamp(2rem,6vw,3.25rem);line-height:1.1;margin:10px 0 16px;font-weight:900;letter-spacing:-0.02em}
+    .hero h1 .accent{color:var(--accent)}
+    .hero p{color:var(--muted);font-size:1.05rem;max-width:60ch}
+    .cta{margin-top:18px;display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:white;padding:12px 16px;border-radius:12px;border:0;cursor:pointer;font-weight:700}
+    .cta:hover{opacity:.95;transform:translateY(-1px)}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px;max-width:520px}
+    .stat{border:1px solid var(--ring);background:var(--card);border-radius:12px;padding:12px;text-align:center}
+    .stat b{font-size:1.1rem}
+
+    .hero-card{position:relative;border:1px solid var(--ring);background:var(--card);border-radius:18px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,.05)}
+    .hero-card img{display:block;width:100%;height:auto;object-fit:contain}
+
+    /* GRID */
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+    .card{border:1px solid var(--ring);border-radius:12px;overflow:hidden;background:var(--card);transition:transform .2s,box-shadow .2s;box-shadow:0 4px 12px rgba(0,0,0,.04)}
+    .card:hover{transform:translateY(-3px);box-shadow:0 8px 18px rgba(0,0,0,.08)}
+    .card img{width:100%;height:auto;object-fit:cover;background:#fff;padding:10px}
+    .content{padding:12px}
+    .title{font-weight:600;margin-bottom:4px}
+    .price{color:var(--accent);font-size:1rem;font-weight:700;margin-bottom:6px}
+    .link{color:var(--muted);font-size:.9rem}
+
+    footer{text-align:center;margin-top:40px;font-size:.9rem;color:var(--muted)}
+    .disclosure{margin:10px 0 24px;color:var(--muted);font-size:.9rem}
+
+    @media (max-width: 880px){ .hero{grid-template-columns:1fr;gap:18px} }
   </style>
 </head>
 <body>
-  <h1>Test – Index Datei</h1>
+  <div class="container">
+    <header>
+      <div class="brand">Montera</div>
+      <nav style="display:flex;gap:16px;font-size:.95rem;color:var(--muted)">
+        <a href="#produkte">Produkte</a>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" aria-label="Einführung">
+      <div>
+        <span class="badge">Premium Fitness Equipment</span>
+        <h1>Erreiche deine <span class="accent">Fitness-Ziele</span> mit den besten Produkten</h1>
+        <p>Von Hanteln über Yoga-Matten bis hin zu Fitness-Trackern – hier findest du alles für dein perfektes Home-Workout. Handverlesen und von Experten empfohlen.</p>
+        <a class="cta" href="#produkte" aria-label="Jetzt durchstarten">Jetzt durchstarten ➜</a>
+        <div class="stats" role="list" aria-label="Schnellstatistiken">
+          <div class="stat" role="listitem"><b>300+ </b><br><span class="muted">Fitness-Produkte</span></div>
+          <div class="stat" role="listitem"><b>4.8★ </b><br><span class="muted">Ø Bewertung</span></div>
+          <div class="stat" role="listitem"><b>24h </b><br><span class="muted">Versand</span></div>
+        </div>
+      </div>
+      
+    </section>
+
+    <p class="disclosure">Werbung / Hinweis: Einige Links sind <strong>Affiliate-Links</strong>. Wenn du darüber kaufst, erhalte ich eine kleine Provision. Für dich bleibt der Preis gleich.</p>
+
+    <!-- PRODUKT-GRID -->
+    <section id="produkte" class="grid" aria-label="Produkte">
+      <a href="https://amzn.to/3XgCq58" target="_blank" rel="nofollow sponsored" class="card">
+        <img src="https://i.imgur.com/6ZLOuaF.png" alt="Verstellbare Kurzhantel – Produktbild" title="Verstellbare Kurzhantel" loading="lazy" decoding="async" />
+        <div class="content">
+          <div class="title">Verstellbare Kurzhanteln</div>
+          <div class="price">€179,99</div>
+          <div class="link">Zum Produkt →</div>
+        </div>
+      </a>
+
+      <a href="https://amzn.to/4ozPdf9" target="_blank" rel="nofollow sponsored" class="card">
+        <img src="https://m.media-amazon.com/images/I/716m8pwBWgL._AC_SL1500_.jpg" alt="Liegestützbrett – Produktbild von Amazon" />
+        <div class="content">
+          <div class="title">Liegestützbrett</div>
+          <div class="price">€39,99</div>
+          <div class="link">Zum Produkt →</div>
+        </div>
+      </a>
+
+      <a href="https://amzn.to/3JTE6yr" target="_blank" rel="nofollow sponsored" class="card">
+        <img src="https://m.media-amazon.com/images/I/71AXcOJFd0L._AC_SL1500_.jpg" alt="Griffkraft Trainer – Produktbild von Amazon" />
+        <div class="content">
+          <div class="title">Griffkraft Trainer</div>
+          <div class="price">€19,99</div>
+          <div class="link">Zum Produkt →</div>
+        </div>
+      </a>
+
+      <a href="https://amzn.to/47kOKHr" target="_blank" rel="nofollow sponsored" class="card">
+        <img src="https://m.media-amazon.com/images/I/81dWsz0sAdL._AC_SL1500_.jpg" alt="Fitness Handtuch – Produktbild von Amazon" />
+        <div class="content">
+          <div class="title">Fitness Handtuch</div>
+          <div class="price">€12,99</div>
+          <div class="link">Zum Produkt →</div>
+        </div>
+      </a>
+
+      <!-- Trinkflasche now last -->
+      <a href="https://amzn.to/3JENS7y" target="_blank" rel="nofollow sponsored" class="card">
+        <img src="https://m.media-amazon.com/images/I/71X++sBdl+L._AC_SL1500_.jpg" alt="Trinkflasche – Produktbild von Amazon" />
+        <div class="content">
+          <div class="title">Trinkflasche</div>
+          <div class="price">€14,99</div>
+          <div class="link">Zum Produkt →</div>
+        </div>
+      </a>
+    </section>
+
+    <footer>
+      <p>© <script>document.write(new Date().getFullYear())</script> Montera. Alle Rechte vorbehalten.</p>
+      <p><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></p>
+    </footer>
+  </div>
 </body>
 </html>
