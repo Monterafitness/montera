@@ -4,132 +4,619 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Montera – Fitness-Deals & Empfehlungen</title>
-  <meta name="description" content="Montera – minimalistische Landingpage mit handverlesenen Fitness-Produkten. Alle Links sind Affiliate-Links (Werbung)." />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='80'>🏋️‍♂️</text></svg>">
+  <meta name="description" content="Montera – minimalistische Landingpage mit handverlesenen Fitness-Produkten. Affiliate-Empfehlungen für dein Home-Workout." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='80'>M</text></svg>">
   <style>
     :root{
-      --bg:#f9fafb; --fg:#0f172a; --muted:#475569; --card:#ffffff; --accent:#16a34a; --ring:#e2e8f0;
+      --bg:#f9fafb;
+      --fg:#0f172a;
+      --muted:#64748b;
+      --card:#ffffff;
+      --accent:#16a34a;
+      --accent-soft:#dcfce7;
+      --ring:#e2e8f0;
+      --danger:#ef4444;
     }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{
+      background:var(--bg);
+      color:var(--fg);
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;
+      line-height:1.5;
+    }
     a{text-decoration:none;color:inherit}
-    .container{max-width:1100px;margin:0 auto;padding:24px}
-    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.4rem}
-    .badge{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;color:#065f46;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.25);padding:6px 10px;border-radius:999px}
+    img{max-width:100%;display:block}
+
+    .page{min-height:100vh;display:flex;flex-direction:column}
+
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+      padding:16px 20px 32px;
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:20;
+      backdrop-filter:blur(12px);
+      background:color-mix(in srgb, var(--bg) 92%, #ffffff 8%);
+      border-bottom:1px solid rgba(148,163,184,.25);
+      margin:-16px -20px 24px;
+    }
+    .header-inner{
+      max-width:1100px;
+      margin:0 auto;
+      padding:10px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+    .brand{
+      font-weight:800;
+      font-size:1.4rem;
+      letter-spacing:-0.03em;
+    }
+    nav{
+      display:flex;
+      gap:16px;
+      font-size:.95rem;
+      color:var(--muted);
+    }
+    nav a{position:relative;padding-bottom:2px}
+    nav a::after{
+      content:"";
+      position:absolute;
+      left:0;bottom:0;
+      width:0;height:2px;
+      background:var(--accent);
+      transition:width .18s ease-out;
+      border-radius:999px;
+    }
+    nav a:hover::after{width:100%}
 
     /* HERO */
-    .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center;margin:10px 0 34px}
-    .hero h1{font-size:clamp(2rem,6vw,3.25rem);line-height:1.1;margin:10px 0 16px;font-weight:900;letter-spacing:-0.02em}
-    .hero h1 .accent{color:var(--accent)}
-    .hero p{color:var(--muted);font-size:1.05rem;max-width:60ch}
-    .cta{margin-top:18px;display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:white;padding:12px 16px;border-radius:12px;border:0;cursor:pointer;font-weight:700}
-    .cta:hover{opacity:.95;transform:translateY(-1px)}
-    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px;max-width:520px}
-    .stat{border:1px solid var(--ring);background:var(--card);border-radius:12px;padding:12px;text-align:center}
-    .stat b{font-size:1.1rem}
+    .hero{
+      margin-top:8px;
+      margin-bottom:28px;
+      display:grid;
+      grid-template-columns:1.4fr .9fr;
+      gap:28px;
+      align-items:center;
+    }
+    .hero-main{max-width:620px}
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:.8rem;
+      color:#166534;
+      background:var(--accent-soft);
+      border:1px solid rgba(22,163,74,.35);
+      padding:6px 10px;
+      border-radius:999px;
+      margin-bottom:10px;
+    }
+    .eyebrow-dot{
+      width:8px;height:8px;border-radius:999px;
+      background:#22c55e;
+      box-shadow:0 0 0 4px rgba(34,197,94,.3);
+    }
+    .hero h1{
+      font-size:clamp(2.1rem,5vw,3.1rem);
+      line-height:1.06;
+      font-weight:900;
+      letter-spacing:-0.03em;
+      margin-bottom:12px;
+    }
+    .hero h1 span{color:var(--accent);}
+    .hero-lead{
+      color:var(--muted);
+      font-size:1.03rem;
+      margin-bottom:18px;
+    }
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      align-items:center;
+      margin-bottom:18px;
+    }
+    .btn-primary{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:11px 18px;
+      border-radius:999px;
+      border:none;
+      background:var(--accent);
+      color:#f8fafc;
+      font-weight:700;
+      font-size:.98rem;
+      cursor:pointer;
+      box-shadow:0 10px 22px rgba(22,163,74,.28);
+      transition:transform .15s ease,box-shadow .15s ease,opacity .15s ease;
+    }
+    .btn-primary:hover{
+      transform:translateY(-1px);
+      box-shadow:0 14px 30px rgba(22,163,74,.3);
+      opacity:.98;
+    }
+    .btn-ghost{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:9px 14px;
+      border-radius:999px;
+      border:1px dashed var(--ring);
+      background:rgba(15,23,42,.02);
+      font-size:.9rem;
+      color:var(--muted);
+      cursor:pointer;
+    }
+    .hero-note{
+      font-size:.86rem;
+      color:var(--muted);
+    }
 
-    .hero-card{position:relative;border:1px solid var(--ring);background:var(--card);border-radius:18px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,.05)}
-    .hero-card img{display:block;width:100%;height:auto;object-fit:contain}
+    .hero-side{
+      border-radius:18px;
+      background:radial-gradient(circle at 0 0,#bbf7d0 0,transparent 45%),
+                 radial-gradient(circle at 100% 0,#bfdbfe 0,transparent 45%),
+                 var(--card);
+      padding:16px 16px 18px;
+      border:1px solid var(--ring);
+      box-shadow:0 16px 40px rgba(15,23,42,.08);
+    }
+    .hero-side-title{
+      font-size:.9rem;
+      font-weight:600;
+      margin-bottom:8px;
+    }
+    .hero-side-text{
+      font-size:.85rem;
+      color:var(--muted);
+      margin-bottom:10px;
+    }
+    .hero-side-products{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+      margin-top:8px;
+    }
+    .hero-mini{
+      border-radius:12px;
+      background:#ffffffcc;
+      padding:8px;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      border:1px solid rgba(226,232,240,.9);
+    }
+    .hero-mini-img{
+      border-radius:9px;
+      overflow:hidden;
+      background:#fff;
+    }
+    .hero-mini-title{
+      font-size:.8rem;
+      font-weight:600;
+    }
+    .hero-mini-price{
+      font-size:.82rem;
+      color:var(--accent);
+      font-weight:700;
+    }
 
-    /* GRID */
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
-    .card{border:1px solid var(--ring);border-radius:12px;overflow:hidden;background:var(--card);transition:transform .2s,box-shadow .2s;box-shadow:0 4px 12px rgba(0,0,0,.04)}
-    .card:hover{transform:translateY(-3px);box-shadow:0 8px 18px rgba(0,0,0,.08)}
-    .card img{width:100%;height:auto;object-fit:cover;background:#fff;padding:10px}
-    .content{padding:12px}
-    .title{font-weight:600;margin-bottom:4px}
-    .price{color:var(--accent);font-size:1rem;font-weight:700;margin-bottom:6px}
-    .link{color:var(--muted);font-size:.9rem}
+    /* DISCLOSURE */
+    .disclosure{
+      margin:0 0 20px;
+      font-size:.85rem;
+      color:var(--muted);
+      background:#e0f2fe;
+      border:1px solid #bfdbfe;
+      padding:8px 12px;
+      border-radius:10px;
+    }
 
-    footer{text-align:center;margin-top:40px;font-size:.9rem;color:var(--muted)}
-    .disclosure{margin:10px 0 24px;color:var(--muted);font-size:.9rem}
+    /* BENEFITS */
+    .section-title{
+      font-size:1.2rem;
+      font-weight:700;
+      margin-bottom:10px;
+    }
+    .benefits{
+      margin-bottom:26px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:14px;
+    }
+    .benefit{
+      background:var(--card);
+      border-radius:14px;
+      border:1px solid var(--ring);
+      padding:12px 12px 10px;
+    }
+    .benefit h3{
+      font-size:.95rem;
+      margin-bottom:4px;
+    }
+    .benefit p{
+      font-size:.86rem;
+      color:var(--muted);
+    }
 
-    @media (max-width: 880px){ .hero{grid-template-columns:1fr;gap:18px} }
+    /* PRODUCT GRID */
+    .products-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:12px;
+      margin-bottom:12px;
+      margin-top:4px;
+    }
+    .products-header p{
+      font-size:.9rem;
+      color:var(--muted);
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+      gap:16px;
+    }
+    .card{
+      border:1px solid var(--ring);
+      border-radius:16px;
+      overflow:hidden;
+      background:var(--card);
+      box-shadow:0 8px 20px rgba(15,23,42,.04);
+      transition:transform .18s ease,box-shadow .18s ease;
+      display:flex;
+      flex-direction:column;
+      min-height:100%;
+    }
+    .card:hover{
+      transform:translateY(-3px);
+      box-shadow:0 14px 30px rgba(15,23,42,.12);
+    }
+    .card-img-wrap{
+      position:relative;
+      background:#fff;
+    }
+    .card img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+    }
+    .badge-top{
+      position:absolute;
+      left:10px;
+      top:10px;
+      padding:4px 8px;
+      border-radius:999px;
+      font-size:.72rem;
+      background:#0f172a;
+      color:#f9fafb;
+    }
+    .badge-sale{
+      background:var(--danger);
+    }
+    .content{
+      padding:12px 12px 10px;
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      flex:1;
+    }
+    .title{
+      font-weight:600;
+      font-size:.98rem;
+    }
+    .price-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:2px;
+      margin-bottom:4px;
+    }
+    .price{
+      color:var(--accent);
+      font-size:1rem;
+      font-weight:700;
+    }
+    .old-price{
+      font-size:.8rem;
+      color:var(--muted);
+      text-decoration:line-through;
+    }
+    .rating{
+      font-size:.8rem;
+      color:#ca8a04;
+    }
+    .link{
+      margin-top:4px;
+      font-size:.88rem;
+      color:var(--muted);
+    }
+    .link span{
+      text-decoration:underline;
+      text-decoration-style:dotted;
+      text-underline-offset:2px;
+    }
+
+    /* FAQ */
+    .faq{
+      margin-top:32px;
+      border-top:1px solid var(--ring);
+      padding-top:18px;
+    }
+    .faq-list{
+      display:grid;
+      gap:10px;
+      margin-top:8px;
+    }
+    .faq-item{
+      background:var(--card);
+      border-radius:12px;
+      border:1px solid var(--ring);
+      padding:10px 12px;
+    }
+    .faq-item h3{
+      font-size:.95rem;
+      margin-bottom:4px;
+    }
+    .faq-item p{
+      font-size:.86rem;
+      color:var(--muted);
+    }
+
+    footer{
+      margin-top:28px;
+      font-size:.85rem;
+      color:var(--muted);
+      text-align:center;
+      padding-top:12px;
+      border-top:1px solid var(--ring);
+    }
+    footer a{
+      text-decoration:underline;
+      text-underline-offset:2px;
+    }
+
+    /* MOBILE */
+    @media (max-width: 880px){
+      .hero{
+        grid-template-columns:1fr;
+        gap:18px;
+      }
+      .hero-side{
+        order:-1;
+      }
+    }
+    @media (max-width: 640px){
+      .container{padding:14px 14px 24px;}
+      .header-inner{flex-direction:column;align-items:flex-start;}
+      nav{width:100%;justify-content:flex-start;overflow-x:auto;}
+      .hero{margin-bottom:22px;}
+      .hero h1{font-size:2rem;}
+      .hero-actions{flex-direction:column;align-items:stretch;}
+      .btn-primary,.btn-ghost{width:100%;justify-content:center;}
+      .grid{grid-template-columns:1fr;}
+      .card img{height:210px;}
+      .hero-side-products{grid-template-columns:1fr;}
+    }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="page">
     <header>
-      <div class="brand">Montera</div>
-      <nav style="display:flex;gap:16px;font-size:.95rem;color:var(--muted)">
-        <a href="#produkte">Produkte</a>
-        <a href="impressum.html">Impressum</a>
-        <a href="datenschutz.html">Datenschutz</a>
-      </nav>
+      <div class="header-inner">
+        <div class="brand">Montera</div>
+        <nav>
+          <a href="#produkte">Produkte</a>
+          <a href="impressum.html">Impressum</a>
+          <a href="datenschutz.html">Datenschutz</a>
+        </nav>
+      </div>
     </header>
 
-    <!-- HERO -->
-    <section class="hero" aria-label="Einführung">
-      <div>
-        <span class="badge">Premium Fitness Equipment</span>
-        <h1>Erreiche deine <span class="accent">Fitness-Ziele</span> mit den besten Produkten</h1>
-        <p>Von Hanteln über Yoga-Matten bis hin zu Fitness-Trackern – hier findest du alles für dein perfektes Home-Workout. Handverlesen und von Experten empfohlen.</p>
-        <a class="cta" href="#produkte" aria-label="Jetzt durchstarten">Jetzt durchstarten ➜</a>
-        <div class="stats" role="list" aria-label="Schnellstatistiken">
-          <div class="stat" role="listitem"><b>300+ </b><br><span class="muted">Fitness-Produkte</span></div>
-          <div class="stat" role="listitem"><b>4.8★ </b><br><span class="muted">Ø Bewertung</span></div>
-          <div class="stat" role="listitem"><b>24h </b><br><span class="muted">Versand</span></div>
+    <main class="container">
+      <!-- HERO -->
+      <section class="hero" aria-label="Einführung">
+        <div class="hero-main">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Handverlesene Fitness-Essentials für dein Home-Workout
+          </div>
+          <h1>Erreiche deine <span>Fitness-Ziele</span> mit den richtigen Produkten</h1>
+          <p class="hero-lead">
+            Kurzhanteln, Liegestützbrett, Griffkraft Trainer, Handtuch & Trinkflasche –
+            alles, was du für effektive Workouts zu Hause brauchst. Schnell bestellt, direkt startklar.
+          </p>
+          <div class="hero-actions">
+            <a href="#produkte">
+              <button class="btn-primary" type="button">
+                Jetzt Produkte ansehen
+                <span>➜</span>
+              </button>
+            </a>
+            <button class="btn-ghost" type="button" onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})">
+              Häufige Fragen anzeigen
+            </button>
+          </div>
+          <p class="hero-note">
+            Kein eigener Shop – du bestellst sicher über unsere Partner (z. B. Amazon).
+          </p>
         </div>
-      </div>
-      
-    </section>
 
-    <p class="disclosure">Werbung / Hinweis: Einige Links sind <strong>Affiliate-Links</strong>. Wenn du darüber kaufst, erhalte ich eine kleine Provision. Für dich bleibt der Preis gleich.</p>
+        <!-- kleine Vorschau-Box rechts -->
+        <aside class="hero-side" aria-label="Beliebte Produkte Vorschau">
+          <div class="hero-side-title">Beliebt bei Montera-Kunden</div>
+          <p class="hero-side-text">Schneller Überblick über unsere meistgeklickten Fitness-Basics.</p>
+          <div class="hero-side-products">
+            <div class="hero-mini">
+              <div class="hero-mini-img">
+                <img src="https://i.imgur.com/6ZLOuaF.png" alt="Verstellbare Kurzhantel – Produktbild" loading="lazy">
+              </div>
+              <div class="hero-mini-title">Kurzhanteln</div>
+              <div class="hero-mini-price">€179,99</div>
+            </div>
+            <div class="hero-mini">
+              <div class="hero-mini-img">
+                <img src="https://m.media-amazon.com/images/I/81dWsz0sAdL._AC_SL1500_.jpg" alt="Fitness Handtuch – Produktbild" loading="lazy">
+              </div>
+              <div class="hero-mini-title">Fitness Handtuch</div>
+              <div class="hero-mini-price">€12,99</div>
+            </div>
+          </div>
+        </aside>
+      </section>
 
-    <!-- PRODUKT-GRID -->
-    <section id="produkte" class="grid" aria-label="Produkte">
-      <a href="https://amzn.to/3XgCq58" target="_blank" rel="nofollow sponsored" class="card">
-        <img src="https://i.imgur.com/6ZLOuaF.png" alt="Verstellbare Kurzhantel – Produktbild" title="Verstellbare Kurzhantel" loading="lazy" decoding="async" />
-        <div class="content">
-          <div class="title">Verstellbare Kurzhanteln</div>
-          <div class="price">€179,99</div>
-          <div class="link">Zum Produkt →</div>
+      <!-- AFFILIATE HINWEIS -->
+      <p class="disclosure">
+        Werbung / Hinweis: Einige Links auf dieser Seite sind <strong>Affiliate-Links</strong>.
+        Wenn du darüber kaufst, erhalte ich eine kleine Provision. Für dich bleibt der Preis gleich.
+      </p>
+
+      <!-- BENEFITS -->
+      <section aria-label="Vorteile">
+        <h2 class="section-title">Warum Montera?</h2>
+        <div class="benefits">
+          <article class="benefit">
+            <h3>Klare Auswahl statt Überforderung</h3>
+            <p>Nur wenige, sinnvolle Produkte, die sich ergänzen – perfekt für den Einstieg oder zum Aufrüsten deines Home-Gyms.</p>
+          </article>
+          <article class="benefit">
+            <h3>Schnelle Lieferung über Partner</h3>
+            <p>Du bestellst über bekannte Anbieter wie Amazon – gewohnt schneller Versand, einfacher Rückversand und Käuferschutz.</p>
+          </article>
+          <article class="benefit">
+            <h3>Fokus auf Training statt Technik</h3>
+            <p>Keine komplizierten Shops, kein Account nötig. Link klicken, Produkt checken, liefern lassen, loslegen.</p>
+          </article>
         </div>
-      </a>
+      </section>
 
-      <a href="https://amzn.to/4ozPdf9" target="_blank" rel="nofollow sponsored" class="card">
-        <img src="https://m.media-amazon.com/images/I/716m8pwBWgL._AC_SL1500_.jpg" alt="Liegestützbrett – Produktbild von Amazon" />
-        <div class="content">
-          <div class="title">Liegestützbrett</div>
-          <div class="price">€39,99</div>
-          <div class="link">Zum Produkt →</div>
+      <!-- PRODUKTE -->
+      <section id="produkte" aria-label="Produkte">
+        <div class="products-header">
+          <h2 class="section-title">Unsere Fitness-Produkte</h2>
+          <p>Tippe ein Produkt an, um Details, Größen & Farben beim Partner-Shop anzusehen.</p>
         </div>
-      </a>
 
-      <a href="https://amzn.to/3JTE6yr" target="_blank" rel="nofollow sponsored" class="card">
-        <img src="https://m.media-amazon.com/images/I/71AXcOJFd0L._AC_SL1500_.jpg" alt="Griffkraft Trainer – Produktbild von Amazon" />
-        <div class="content">
-          <div class="title">Griffkraft Trainer</div>
-          <div class="price">€19,99</div>
-          <div class="link">Zum Produkt →</div>
+        <div class="grid">
+          <!-- 1: Kurzhanteln -->
+          <a href="https://amzn.to/3XgCq58" target="_blank" rel="nofollow sponsored noopener" class="card">
+            <div class="card-img-wrap">
+              <span class="badge-top">Bestseller</span>
+              <img src="https://i.imgur.com/6ZLOuaF.png" alt="Verstellbare Kurzhanteln – Produktbild" loading="lazy" decoding="async">
+            </div>
+            <div class="content">
+              <div class="title">Verstellbare Kurzhanteln</div>
+              <div class="price-row">
+                <span class="price">€179,99</span>
+                <span class="rating">⭐ 4,8 / 5</span>
+              </div>
+              <p class="link"><span>Jetzt auf Amazon ansehen</span></p>
+            </div>
+          </a>
+
+          <!-- 2: Liegestützbrett -->
+          <a href="https://amzn.to/4ozPdf9" target="_blank" rel="nofollow sponsored noopener" class="card">
+            <div class="card-img-wrap">
+              <span class="badge-top badge-sale">-20%</span>
+              <img src="https://m.media-amazon.com/images/I/716m8pwBWgL._AC_SL1500_.jpg" alt="Liegestützbrett – Produktbild" loading="lazy">
+            </div>
+            <div class="content">
+              <div class="title">Liegestützbrett</div>
+              <div class="price-row">
+                <span class="price">€39,99</span>
+                <span class="old-price">€49,99</span>
+              </div>
+              <p class="link"><span>Varianten & Farben ansehen</span></p>
+            </div>
+          </a>
+
+          <!-- 3: Griffkraft Trainer -->
+          <a href="https://amzn.to/3JTE6yr" target="_blank" rel="nofollow sponsored noopener" class="card">
+            <div class="card-img-wrap">
+              <span class="badge-top">Grip & Forearms</span>
+              <img src="https://m.media-amazon.com/images/I/71AXcOJFd0L._AC_SL1500_.jpg" alt="Griffkraft Trainer – Produktbild" loading="lazy">
+            </div>
+            <div class="content">
+              <div class="title">Griffkraft Trainer</div>
+              <div class="price-row">
+                <span class="price">€19,99</span>
+                <span class="rating">⭐ 4,7 / 5</span>
+              </div>
+              <p class="link"><span>Ideal für Unterarme & Griffkraft</span></p>
+            </div>
+          </a>
+
+          <!-- 4: Fitness Handtuch -->
+          <a href="https://amzn.to/47kOKHr" target="_blank" rel="nofollow sponsored noopener" class="card">
+            <div class="card-img-wrap">
+              <span class="badge-top">Must-Have</span>
+              <img src="https://m.media-amazon.com/images/I/81dWsz0sAdL._AC_SL1500_.jpg" alt="Fitness Handtuch – Produktbild" loading="lazy">
+            </div>
+            <div class="content">
+              <div class="title">Fitness Handtuch</div>
+              <div class="price-row">
+                <span class="price">€12,99</span>
+                <span class="rating">⭐ 4,6 / 5</span>
+              </div>
+              <p class="link"><span>Perfekt fürs Gym & Home-Workout</span></p>
+            </div>
+          </a>
+
+          <!-- 5: Trinkflasche -->
+          <a href="https://amzn.to/3JENS7y" target="_blank" rel="nofollow sponsored noopener" class="card">
+            <div class="card-img-wrap">
+              <span class="badge-top">Hydration</span>
+              <img src="https://m.media-amazon.com/images/I/71X++sBdl+L._AC_SL1500_.jpg" alt="Trinkflasche – Produktbild" loading="lazy">
+            </div>
+            <div class="content">
+              <div class="title">Trinkflasche</div>
+              <div class="price-row">
+                <span class="price">€14,99</span>
+                <span class="rating">⭐ 4,9 / 5</span>
+              </div>
+              <p class="link"><span>Ausführungen & Farben checken</span></p>
+            </div>
+          </a>
         </div>
-      </a>
+      </section>
 
-      <a href="https://amzn.to/47kOKHr" target="_blank" rel="nofollow sponsored" class="card">
-        <img src="https://m.media-amazon.com/images/I/81dWsz0sAdL._AC_SL1500_.jpg" alt="Fitness Handtuch – Produktbild von Amazon" />
-        <div class="content">
-          <div class="title">Fitness Handtuch</div>
-          <div class="price">€12,99</div>
-          <div class="link">Zum Produkt →</div>
+      <!-- FAQ -->
+      <section id="faq" class="faq" aria-label="Häufige Fragen">
+        <h2 class="section-title">Häufige Fragen (FAQ)</h2>
+        <div class="faq-list">
+          <article class="faq-item">
+            <h3>Bestelle ich bei Montera oder bei Amazon?</h3>
+            <p>Du bestellst nicht direkt bei Montera, sondern bei unseren Partnern (z. B. Amazon). Montera zeigt dir nur ausgewählte Produkte – der Kauf läuft komplett über den jeweiligen Shop.</p>
+          </article>
+          <article class="faq-item">
+            <h3>Kostet mich das mehr, wenn ich über deine Links bestelle?</h3>
+            <p>Nein. Der Preis bleibt für dich gleich. Wenn du über einen Affiliate-Link kaufst, erhält Montera lediglich eine kleine Provision vom Partner.</p>
+          </article>
+          <article class="faq-item">
+            <h3>Für wen sind die Produkte geeignet?</h3>
+            <p>Die Auswahl ist bewusst so gewählt, dass sowohl Einsteiger als auch Fortgeschrittene im Home-Workout damit trainieren können – Jugendliche und Erwachsene.</p>
+          </article>
+          <article class="faq-item">
+            <h3>Kann ich die Produkte zurückgeben?</h3>
+            <p>Ja. Rückgabe und Garantie richten sich nach den Bedingungen des jeweiligen Shops (z. B. Amazon-Rückgaberecht). Alle Details findest du direkt dort auf der Produktseite.</p>
+          </article>
         </div>
-      </a>
+      </section>
 
-      <!-- Trinkflasche now last -->
-      <a href="https://amzn.to/3JENS7y" target="_blank" rel="nofollow sponsored" class="card">
-        <img src="https://m.media-amazon.com/images/I/71X++sBdl+L._AC_SL1500_.jpg" alt="Trinkflasche – Produktbild von Amazon" />
-        <div class="content">
-          <div class="title">Trinkflasche</div>
-          <div class="price">€14,99</div>
-          <div class="link">Zum Produkt →</div>
-        </div>
-      </a>
-    </section>
-
-    <footer>
-      <p>© <script>document.write(new Date().getFullYear())</script> Montera. Alle Rechte vorbehalten.</p>
-      <p><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></p>
-    </footer>
+      <footer>
+        <p>© <script>document.write(new Date().getFullYear())</script> Montera. Alle Rechte vorbehalten.</p>
+        <p><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></p>
+      </footer>
+    </main>
   </div>
 </body>
 </html>
