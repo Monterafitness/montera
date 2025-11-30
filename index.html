@@ -60,7 +60,7 @@
     }
     nav a:hover::after{width:100%}
 
-    /* HERO – jetzt einspaltig, schöner Card-Stil */
+    /* HERO – einspaltig Card-Stil */
     .hero{
       margin-top:8px;
       margin-bottom:28px;
@@ -145,7 +145,7 @@
       color:var(--muted);
     }
 
-    /* DISCLOSURE */
+    /* (Hinweis-Style behalten, aber kein Fenster mehr benutzt) */
     .disclosure{
       margin:14px 0 20px;
       font-size:.85rem;
@@ -154,6 +154,7 @@
       border:1px solid #bfdbfe;
       padding:8px 12px;
       border-radius:10px;
+      display:none; /* falls doch irgendwo noch drin wäre */
     }
 
     /* BENEFITS */
@@ -387,32 +388,7 @@
         </div>
       </section>
 
-      <!-- AFFILIATE HINWEIS -->
-      <p class="disclosure">
-        Werbung / Hinweis: Einige Links auf dieser Seite sind <strong>Affiliate-Links</strong>.
-        Wenn du darüber kaufst, erhalte ich eine kleine Provision. Für dich bleibt der Preis gleich.
-      </p>
-
-      <!-- BENEFITS -->
-      <section aria-label="Vorteile">
-        <h2 class="section-title">Warum Montera?</h2>
-        <div class="benefits">
-          <article class="benefit">
-            <h3>Klare Auswahl statt Überforderung</h3>
-            <p>Nur wenige, sinnvolle Produkte, die sich ergänzen – perfekt für den Einstieg oder zum Aufrüsten deines Home-Gyms.</p>
-          </article>
-          <article class="benefit">
-            <h3>Schnelle Lieferung über Partner</h3>
-            <p>Du bestellst über bekannte Anbieter wie Amazon – gewohnt schneller Versand, einfacher Rückversand und Käuferschutz.</p>
-          </article>
-          <article class="benefit">
-            <h3>Fokus auf Training statt Technik</h3>
-            <p>Keine komplizierten Shops, kein Account nötig. Link klicken, Produkt checken, liefern lassen, loslegen.</p>
-          </article>
-        </div>
-      </section>
-
-      <!-- PRODUKTE -->
+      <!-- PRODUKTE (jetzt direkt unter dem Hero) -->
       <section id="produkte" aria-label="Produkte">
         <div class="products-header">
           <h2 class="section-title">Unsere Fitness-Produkte</h2>
@@ -499,6 +475,25 @@
               <p class="link"><span>Ausführungen & Farben checken</span></p>
             </div>
           </a>
+        </div>
+      </section>
+
+      <!-- BENEFITS (jetzt nach den Produkten) -->
+      <section aria-label="Vorteile">
+        <h2 class="section-title">Warum Montera?</h2>
+        <div class="benefits">
+          <article class="benefit">
+            <h3>Klare Auswahl statt Überforderung</h3>
+            <p>Nur wenige, sinnvolle Produkte, die sich ergänzen – perfekt für den Einstieg oder zum Aufrüsten deines Home-Gyms.</p>
+          </article>
+          <article class="benefit">
+            <h3>Schnelle Lieferung über Partner</h3>
+            <p>Du bestellst über bekannte Anbieter wie Amazon – gewohnt schneller Versand, einfacher Rückversand und Käuferschutz.</p>
+          </article>
+          <article class="benefit">
+            <h3>Fokus auf Training statt Technik</h3>
+            <p>Keine komplizierten Shops, kein Account nötig. Link klicken, Produkt checken, liefern lassen, loslegen.</p>
+          </article>
         </div>
       </section>
 
